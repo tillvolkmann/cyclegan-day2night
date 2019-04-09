@@ -41,13 +41,18 @@ def parse_loss_log(name):
 
 def save_images_basic(opt, data, results_path, visuals, aspect_ratio=1.0, width=1280):
     """Save images to the disk.
-    Images written include:
-    -
+
+    Depending on write mode (opt.mode), images written include:
+    - basic: real, recreated, and translated images of domains A and B
+    - basic_single: real, recreated, and translated images of domain A
+    - conversion: recreated and translated images of domains A and B
+    - conversion: recreated and translated images of domain A
+    - frames: Specific output for video creation
 
     Parameters:
-        opt
-        data
-        results_path
+        opt                      -- options for test run
+        data                     -- image and label data
+        results_path             -- path for writing results
         visuals (OrderedDict)    -- an ordered dictionary that stores (name, images (either tensor or numpy) ) pairs
         image_path (str)         -- the string is used to create image paths
         aspect_ratio (float)     -- the aspect ratio of saved images
@@ -55,21 +60,6 @@ def save_images_basic(opt, data, results_path, visuals, aspect_ratio=1.0, width=
 
     This function will save images stored in 'visuals' to the HTML file specified by 'webpage'.
 
-    in cycle_ga_model.set_input, AtoB = self.opt.direction == 'AtoB' is considered
-
-    Some notes on incoming formats:
-    image_path :
-        a list containing only one of the paths, e.g. ['/home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/test/b35a415a-02526f57.jpg']
-    data :
-        {'A': tensor([[[[ 0.0353,  0.0275,  0.0118,  ..., -0.1843, -0.0902, -0.2000],
-           ...  [-0.7333, -0.7333, -0.7333,  ..., -0.6706, -0.6706, -0.6706]]]]),
-        'B': tensor([[[[-1.0000, -1.0000, -1.0000,  ..., -0.9608, -0.9608, -0.9608],
-          ...  [-0.9843, -0.9843, -0.9843,  ..., -0.9765, -0.9765, -0.9765]]]]),
-        'A_paths': ['/home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/test/b35a415a-02526f57.jpg'],
-        'B_paths': ['/home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/test/4feefa31-18e668bd.jpg']}
-        ['/home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/test/b35a415a-02526f57.jpg']
-    for each pair (label, image_tensor) within an
-        ordered dict, e.g. OrderedDict([('real_A', tensor([[[[ 0.0353,  0.0275,  0.0118,  ..., -0.1843, -0.0902, -0.2000], ...
     """
 
     if opt.dataset_mode == 'single':
@@ -144,7 +134,7 @@ def save_images_basic(opt, data, results_path, visuals, aspect_ratio=1.0, width=
 
 
 def save_images_progress(webpage, visuals, image_path, aspect_ratio=1.0, width=256):
-    """Save images to the disk.
+    """Save images to the disk in html format.
 
     Parameters:
         webpage (the HTML class) -- the HTML webpage class that stores these imaegs (see html.py for more details)

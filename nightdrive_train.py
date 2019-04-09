@@ -1,8 +1,7 @@
-"""General-purpose training script for image-to-image translation.
+"""Training script for day-to-night translation using CycleGAN model.
 
-This script works for various models (with option '--model': e.g., pix2pix, cyclegan, colorization) and
-different datasets (with option '--dataset_mode': e.g., aligned, unaligned, single, colorization).
-You need to specify the dataset ('--dataroot'), experiment name ('--name'), and model ('--model').
+This script works for various models (with option '--model': e.g., cyclegan) and different datasets (with option '--dataset_mode': e.g., deepdrive).
+You need to specify at least the dataset ('--dataroot'), experiment name ('--name'), and model ('--model').
 
 It first creates model, dataset, and visualizer given the option.
 It then does standard network training. During the training, it also visualize/save the images, print/save the loss plot, and save models.
@@ -10,9 +9,7 @@ The script supports continue/resume training. Use '--continue_train' to resume y
 
 Example:
     Train a CycleGAN model:
-        python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
-    Train a pix2pix model:
-        python train.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA
+        python3 nightdrive_train.py --dataroot ./datasets/your_folder --name name_of_run --model cycle_gan
 
 Resources:
     See options/base_options.py and options/train_options.py for more training options.

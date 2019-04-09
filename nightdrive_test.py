@@ -33,7 +33,6 @@ Example (You need to train models first or download pre-trained models from our 
         '--num_test <num_test (int)>' : how many test images to run (default=50)
 
 
-
 See options/base_options.py and options/test_options.py for more test options.
 See training and test tips at: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/tips.md
 See frequently asked questions at: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/qa.md
@@ -49,8 +48,8 @@ General settings for night-drive:
   python3 nightdrive_test.py
     --model cycle_gan --phase test --no_dropout
     --preprocess none --load_size 1280
-    --gpu_ids -1
-    --name cgan_aws_v021
+    --gpu_ids 0
+    --name cgan_aws
 
 To process our data sets, use:
   Very quick model evaluation
@@ -79,11 +78,6 @@ To process our data sets, use:
     --jsonfile /home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/valid/bdd100k_sorted_valid
     --results_dir /home/till/data/driving/BerkeleyDeepDrive/bdd100k_sorted/valid_gan/
 
-
-  Regarding produced image resolution, I tested the following for our model established using --load_size 1280 --preprocess scale_width_and_crop --crop_size 360
-  ~ nothing specified at all <> makes small test images
-  --preprocess scale_width --crop_size 1280 <> makes 1280x720 images
-  --preprocess none --load_size 1280 <> makes 1280x720 images, looks identical to previous
 
 """
 import os
