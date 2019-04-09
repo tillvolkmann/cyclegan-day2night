@@ -51,7 +51,7 @@ if __name__ == "__main__":
     opt = parser.parse_args()
 
     # Settings
-    timeout = 1.5
+    timeout = 2.0
     num_test = 50
     num_warmup = 5
     wait_beforestart = 5
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         When presented with an image, hit {key_real} on the keyboard to identify
         the image as real, or {key_fake} to identify it as fake.
 
-        You will be shown each image for exactly {np.ceil(timeout)} second(s) only. 
+        You will be shown each image for exactly {np.round(timeout)} second(s) only. 
         You need to provide your answer (hit {key_real} or {key_fake} key) within that short
         time frame, so you need to decide very fast. 
         Once the next image appears, your input will be associated with that new
@@ -113,7 +113,7 @@ if __name__ == "__main__":
         your selections for these images will not count. There will be no break after
         the warm-up sequence.
 
-        >>> Remember, press {key_real} for real or {key_fake} for fake within one {np.ceil(timeout)} second(s) for each test image.
+        >>> Remember, press {key_real} for real or {key_fake} for fake within one {np.round(timeout)} second(s) for each test image.
 
             Make sure you position your fingers on those keys before you start the test.
 
